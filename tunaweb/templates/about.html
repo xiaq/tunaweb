@@ -1,0 +1,48 @@
+{# Copyright 2012 Cheer Xiao -#}
+{% extends 'layout.html' %}
+{% set current_tab = 'about' %}
+
+{% block head_title %}
+  关于 TUNA - {{ super() }}
+{% endblock %}
+
+{% block head_extra %}
+  {{ link_css('about.css') }}
+{% endblock %}
+
+{% macro point(image, text) %}
+  {% set image_url = url_for('static', filename='images/' + image) %}
+  <li class="point">
+    <img class="point-icon" src="{{ image_url }}"/>
+    <p class="point-text">{{ text }}</p>
+  </li>
+{% endmacro %}
+
+{% block content %}
+  <h1>我们致力于<span class="subtitle">Missions</span></h1>
+  <div class="points-wrapper">
+    <p>我们的使命包括但不限于——</p>
+    <ul class="points-list">
+      {{ point('missions/service.png', '为校内外提供优质的基于网络的服务') }}
+      {{ point('missions/research.png',
+               '参与校内网络科研项目，促进同学与科研部门的沟通') }}
+      {{ point('missions/opensource.png',
+               '发扬开源理念，建设技术社区') }}
+      {{ point('missions/infra.png',
+               '参与校园网络设施运行维护，优化校园网环境') }}
+      <li class="clear"></li>
+    </ul>
+  </div>
+
+  <h1>我们欢迎<span class="subtitle">Outreach</span></h1>
+  <div class="points-wrapper">
+    <p>我们是一个开放的社区。只要你……</p>
+    <ul class="points-list">
+      {{ point('outreach/loveweb.png', '爱好计算机网络技术') }}
+      {{ point('outreach/revolution.png', '相信技术的革命性力量') }}
+      {{ point('outreach/collaboration.png', '愿意和志同道合者协作') }}
+      <li class="clear"></li>
+    </ul>
+    <p>那么请随时和我们取得联络，并且加入我们吧！</p>
+  </div>
+{% endblock %}

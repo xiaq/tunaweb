@@ -1,0 +1,74 @@
+{# Copyright 2012 Cheer Xiao -#}
+<!doctype html>
+{% macro link_css(filename) %}
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/' + filename) }}"/>
+{% endmacro %}
+
+{% macro _tab(name, label) %}
+  {% if name == current_tab %}
+    {% set class = 'current-tab' %}
+  {% endif %}
+  <li class="tab">
+    <a href="{{ url_for(name) }}" class="{{ class }}">{{ label }}</a>
+  </li>
+{% endmacro %}
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <title>
+      {% block head_title %} 清华大学学生网管会 {% endblock %}
+    </title>
+    {{ link_css('reset.css') }}
+    {{ link_css('common.css') }}
+    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+    {% block head_extra %}
+    {% endblock %}
+  </head>
+  <body>
+    <div id="main-wrapper">
+      <header>
+        {% block header %}
+          <img class="header-logo" src="{{ url_for(
+            'static', filename="images/header-logo.png") }}"/>
+          <div class="header-title">
+            清华大学学生网管会
+            <div class="subtitle">Tsinghua University Network Administrators</div>
+          </div>
+          <ul class="tabs-list">
+            {{ _tab('home', '主页') }}
+            {{ _tab('about', '关于') }}
+            {{ _tab('get_involved', '联系&加入') }}
+          </ul>
+        {% endblock %}
+      </header>
+      <div class="clear"></div>
+
+      {% if flash %}
+        <div class="flash">
+          <ul class="flash-messages-list">
+            {% for msg in flash %}
+              <li class="flash-message">
+                {{ msg }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="clear"></div>
+      {% endif %}
+
+      <div id="content">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <hr/>
+
+      <footer>
+        {% block footer %}
+          Copyright 2012 Cheer Xiao and others. Some rights reserved.
+        {% endblock %}
+      </footer>
+    </div>
+  </body>
+</html>

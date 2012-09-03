@@ -1,0 +1,63 @@
+.pane {
+    padding: 0 0 0 2%;
+    float: left;
+}
+
+#pane-contacts {
+    width: 55%;
+}
+
+#pane-signup {
+    width: 40%;
+}
+
+@media screen and (max-width: 767px) {
+    .pane {
+        padding: 0;
+        float: none;
+        width: auto !important;
+    }
+}
+
+.contacts-list {
+    margin-left: 2em;
+}
+
+.contacts-list > li {
+    list-style-type: square;
+}
+
+.contacts-list > li > ul {
+    margin-left: 1em;
+}
+
+.contacts-list > li > ul > li {
+    list-style-type: disc;
+}
+
+.field {
+    margin-bottom: 0.2em;
+    clear: both;
+}
+
+.field-label {
+    width: 6em;
+    float: left;
+    text-align: right;
+}
+
+.field-input-wrapper {
+    width: 60%;
+    margin-left: 0.5em;
+    float: left;
+}
+
+.field-input {
+    border: 1px solid #4E7DA9;
+    width: 90%;
+}
+
+.submit {
+    display: block;
+    margin: 0 auto;
+}

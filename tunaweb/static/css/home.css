@@ -1,0 +1,39 @@
+.sites-list {
+    margin: 16px 28px;
+}
+
+.site {
+    margin: 0 32px 0 0;
+    float: left;
+    width: 96px;
+    height: 192px;
+}
+
+.site > a {
+    display: block;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed white;
+}
+
+.site > a:hover {
+    border-bottom-color: blue;
+}
+
+.site-icon {
+    display: block;
+    margin: 0 0 10px 0;
+    height: 96px;
+    width: 96px;
+}
+
+.site-name {
+    margin: 0 0 5px 0;
+    text-align: center;
+    font-size: 1.5em;
+    font-variant: small-caps;
+}
+
+.site-desc {
+    text-align: center;
+    font-size: small;
+}

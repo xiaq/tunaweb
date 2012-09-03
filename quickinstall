@@ -1,0 +1,32 @@
+#!/bin/bash
+# Adapted from moin2's quickinstall script, licensed under GPLv2.
+# create a virtual environment in directory $ENV/
+#
+# set PYTHON environment variable to change the python version
+# set ENV environment variable to change the virtual env directory
+# set VIRTUALENV environment variable to change the virtualenv command
+# for example: PYTHON=/usr/bin/pypy ENV=env-pypy ./quickinstall
+#
+# needs: virtualenv, pip
+
+: "DLC = ${DLC:=./dlc}, ENV = ${ENV:=./env}"
+
+# find the right python version
+if [ -z "$PYTHON" ]; then
+    for PYTHON in python{2.7,2.6,2,}; do
+        type $PYTHON >/dev/null 2>&1 && break
+    done
+fi
+
+# find the right virtualenv version
+if [ -z "$VIRTUALENV" ]; then
+    for VIRTUALENV in virtualenv{2.7,2.6,2,}; do
+        type $VIRTUALENV >/dev/null 2>&1 && break
+    done
+fi
+
+$VIRTUALENV --no-site-packages --python $PYTHON $ENV || exit 1
+
+. $ENV/bin/activate || exit 1
+
+pip install --download-cache=$DLC -e .

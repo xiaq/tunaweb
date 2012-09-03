@@ -1,0 +1,6 @@
+*.pyc
+.*.swp
+/config.py
+/env
+/dlc
+/tunaweb.egg-info

@@ -1,0 +1,66 @@
+{# Copyright 2012 Cheer Xiao -#}
+{% extends 'layout.html' %}
+{% set current_tab = 'home' %}
+
+{% block head_extra %}
+  {{ link_css('home.css') }}
+{% endblock %}
+
+{% macro site(dn, desc, https=none) %}
+  {% set dispname = dn.capitalize() %}
+  {% set href= 'http://{0}.tuna.tsinghua.edu.cn/'.format(dn) %}
+  {% set icon = url_for('static', filename='images/sites/{0}.png'.format(dn)) %}
+  <li class="site">
+    <a href="{{ href }}">
+      <img class="site-icon" src="{{ icon }}"/>
+      <p class="site-name">{{ dispname }}</p>
+    </a>
+    <p class="site-desc">{{ desc }}</p>
+  </li>
+{% endmacro %}
+
+{% macro nonweb_site(dn, desc, howto_page) %}
+  {% set dispname = dn.capitalize() %}
+  {% set icon = url_for('static', filename='images/sites/{0}.png'.format(dn)) %}
+  <li class="site">
+    <img class="site-icon" src="{{ icon }}"/>
+    <p class="site-name">{{ dispname }}</p>
+    <p class="site-desc">{{ desc }}<br/>
+      (<a href="http://wiki.tuna.tsinghua.edu.cn/{{ howto_page }}">使用说明</a>)</p>
+{% endmacro %}
+
+{% block content %}
+  <h1>公共服务<span class="subtitle">Public Services</span></h1>
+  <ul class="sites-list">
+    {{ site('mirrors', '开源软件镜像站') }}
+    {{ site('go', 'Go 语言文档镜像') }}
+    {{ site('tunet', '下一代 tunet.edu.cn') }}
+    {{ site('topdf', 'MS Office 文档→PDF 转换服务') }}
+    {{ site('sagenb', 'SAGE Notebook 科学计算(即将上线)') }}
+    {{ nonweb_site('ntp', '网络授时服务', 'NtpHowto') }}
+    <li class="clear"></li>
+  </ul>
+
+  <h1>组织站点和会员服务<span class="subtitle">Organizational & Member's Sites</span></h1>
+  <ul class="sites-list">
+    {{ site('issues', 'bug 报告、任务进度追踪') }}
+    {{ site('wiki', '知识库、工作日志') }}
+    {{ site('git', 'Git 代码仓库') }}
+    {{ site('ldap', 'LDAP 网页界面 (phpLDAPadmin)') }}
+    {{ site('contacts', '会员通讯录 (ConTagged)') }}
+    {{ nonweb_site('mail', '邮件收发服务', 'MailHowto') }}
+    {{ nonweb_site('omni', '个人主页服务', 'OmniHowto') }}
+    <li class="clear"></li>
+  </ul>
+
+  {#
+  <h1>Quick Links</h1>
+  <h1>友链</h1>
+  <h1>便民链接</h2>
+  <dl class="sites-list">
+    {{ site('gplab', '普通物理实验教学网站') }}
+    {{ site('pec', '电路原理教学网站') }}
+  </dl>
+  <div class="clear"></div>
+  #}
+{% endblock %}

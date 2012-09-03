@@ -1,0 +1,79 @@
+{# Copyright 2012 Cheer Xiao -#}
+{% extends 'layout.html' %}
+{% set current_tab = 'get_involved' %}
+
+{% block head_title %}
+  加入 TUNA - {{ super() }}
+{% endblock %}
+
+{% block head_extra %}
+  {{ link_css('get_involved.css') }}
+{% endblock %}
+
+{% block content %}
+  <div class="pane" id="pane-contacts">
+    <h1>联络方式<span class="subtitle">Get in Touch</span></h1>
+    <ul class="contacts-list">
+      <li>邮件列表——{{ 'tuna-general@googlegroups.com' | obfuscate }}
+        <ul>
+          <li><a href="https://groups.google.com/forum/#!forum/tuna-general">
+            Google Group</a></li>
+          <li><a href="http://dir.gmane.org/gmane.org.operators.tuna.general">
+            Gmane 存档</a></li>
+          <li>向 {{ 'tuna-general+subscribe@googlegroups.com' | obfuscate }} 发送任意邮件可直接加入</li>
+        </ul>
+      </li>
+      <li>所有邮件列表——
+        <a href="http://wiki.tuna.tsinghua.edu.cn/MailingLists">Wiki 条目</a>
+      </li>
+      <li>IRC——我们在 irc.freenode.net 上的 #tuna 频道</li>
+      <li>会长信箱——{{ 'tunaroot@gmail.com' | obfuscate }}</li>
+    </ul>
+  </div>
+
+  <div class="pane" id="pane-signup">
+    <h1>在线报名<span class="subtitle">Sign Up</span></h1>
+    <form class="signup-form" method="POST" action="">
+      <ul>
+        {% for e in ['name', 'nick', 'email', 'mobile', 'dept', 'address',
+                     'student_id', 'self_intro'] %}
+          {% set f = form[e] %}
+          <li class="field">
+            <span class="field-label">
+              {% if not f.optional %}
+                <span>*</span>
+              {% endif %}
+              {{ gen.label(f, contents=f.label) }}
+            </span>
+            <span class="field-input-wrapper">
+              {% set ph = f.properties['placeholder'] %}
+              {% set rows = f.properties['rows'] %}
+              {#
+              XXX maybe introduce a widget library when we have more forms
+              #}
+              {% if rows and rows > 1 %}
+                {{ gen.textarea(f, class="field-input", rows=rows|string,
+                                placeholder=ph) }}
+              {% else %}
+                {{ gen.input(f, type='text', class="field-input",
+                             placeholder=ph) }}
+              {% endif %}
+              {% if f.errors %}
+                <ul class="field-errors-list">
+                  {% for error in f.errors %}
+                    <li class="field-error">
+                      {{ error }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="clear"></div>
+      <button class="submit">提交!</button>
+    </form>
+    <div class="clear"></div>
+  </div>
+{% endblock %}

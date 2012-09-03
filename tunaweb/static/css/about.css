@@ -1,0 +1,25 @@
+.points-wrapper {
+    margin-left: 0.5em;
+}
+
+.points-list {
+    margin: 16px 28px;
+}
+
+.point {
+    margin: 0 32px 0 0;
+    float: left;
+    width: 128px;
+    height: auto;
+}
+
+.point-icon {
+    display: block;
+    margin: 0 0 10px 0;
+    height: 128px;
+    width: 128px;
+}
+
+.point-text {
+    text-align: center;
+}
