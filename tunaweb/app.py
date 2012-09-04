@@ -74,7 +74,6 @@ def send_signup_form(form):
 @app.route('/get_involved', methods=['GET', 'POST'])
 def get_involved():
     if request.method == 'POST':
-        lalala
         form = SignupForm.from_flat(request.form.items())
         if form.validate():
             send_signup_form(form)
