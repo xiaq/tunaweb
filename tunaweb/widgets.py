@@ -1,4 +1,4 @@
-from flatland import String, Number
+from flatland import String
 from flatland.validation import Present, IsEmail
 
 

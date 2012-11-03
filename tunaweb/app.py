@@ -8,7 +8,7 @@ from StringIO import StringIO
 from smtplib import SMTP
 from email.mime.text import MIMEText
 
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request
 from flatland import Form
 from flatland.out.markup import Generator
 from jinja2 import Markup
