@@ -49,7 +49,7 @@ TO = 'tuna-secrets@googlegroups.com'
 SMTP_SERVER = 'smtp.tuna.tsinghua.edu.cn'
 SIGNUP_SUCCEED_FLASH = u'\
 报名成功，撒花~ 邮件已经发给 {0}，请静候佳音! :)'.format(TO)
-MENTORS = [u'xiaqqaix@gmail.com', u'heroxbd@gmail.com']
+MENTORS = [u'xiaqqaix@gmail.com', u'heroxbd@gmail.com', u'alick9188@gmail.com']
 MENTOR_MSG = (u'---- 我是卖萌的分割线 ----\n'
               u'一只野生的 {0} 蹦出来了！\n'
               u'{1}，决定是你了！请速速前来迎新！\n')
