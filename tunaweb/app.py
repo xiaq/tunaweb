@@ -45,7 +45,7 @@ class SignupForm(Form):
 
 # TODO make these configurable
 FROM = 'signup-request@v.tuna.tsinghua.edu.cn'
-TO = 'tunaroot@gmail.com'
+TO = 'tuna-secrets@googlegroups.com'
 SMTP_SERVER = 'smtp.tuna.tsinghua.edu.cn'
 SIGNUP_SUCCEED_FLASH = u'\
 报名成功，撒花~ 邮件已经发给 {0}，请静候佳音! :)'.format(TO)
