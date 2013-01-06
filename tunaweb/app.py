@@ -49,25 +49,32 @@ TO = 'tuna-secrets@googlegroups.com'
 SMTP_SERVER = 'smtp.tuna.tsinghua.edu.cn'
 SIGNUP_SUCCEED_FLASH = u'\
 报名成功，撒花~ 邮件已经发给 {0}，请静候佳音! :)'.format(TO)
+MENTORS = [u'xiaqqaix@gmail.com', u'heroxbd@gmail.com']
+MENTOR_MSG = (u'---- 我是卖萌的分割线 ----\n'
+              u'一只野生的 {0} 蹦出来了！\n'
+              u'{1}，决定是你了！请速速前来迎新！\n')
 
 
 def send_signup_form(form):
+    name = form['name'].value
     content = StringIO()
     for e in ['name', 'nick', 'email', 'mobile', 'dept', 'address',
               'student_id', 'self_intro']:
         f = form[e]
         content.write(u'{0}: {1}\n'.format(f.label, f.value))
+    mentor = choice(MENTORS)
+    content.write(MENTOR_MSG.format(name, mentor))
 
     msg = MIMEText(content.getvalue().encode('utf-8'), _charset='utf-8')
     msg['From'] = FROM
     msg['To'] = TO
-    msg['Subject'] = (u'来自 {0} 的加入请求'.format(form['name'].value)
-                      .encode('utf-8'))
+    msg['Cc'] = mentor
+    msg['Subject'] = (u'来自 {0} 的加入请求'.format(name).encode('utf-8'))
     msg['Reply-To'] = form['email'].value.encode('utf-8')
 
     conn = SMTP(SMTP_SERVER)
     conn.set_debuglevel(1)
-    conn.sendmail(FROM, TO, msg.as_string())
+    conn.sendmail(FROM, [TO, mentor], msg.as_string())
     conn.quit()
 
 
